@@ -54,27 +54,29 @@ public class ArticleService {
 			throw new ResourseNotFoundException("Article not found of id : " +id );
 	}
 	
-	public void updateArticle(int id, String name, Category category, LocalDate createdDate, String creatorName) throws SQLException,ResourceNotFoundException {
+	public boolean updateArticle(int id, String name, Category category, LocalDate createdDate, String creatorName) throws SQLException {
 		Article art = articleDao.findById(id);
 		if (art != null) {
 		Boolean status = articleDao.update(new Article(id, name, category, createdDate, creatorName));
-		if (status)
+		if (status) {
 			System.out.println("Article deleted Sucessfully!!");
-		else
+		}
+		else 
 			System.out.println("Article failed to delete!!");
 		}
-		else
-			throw new ResourceNotFoundException("Article not found with id " + id);
-	
-		
+		else 
+			throw new ResourseNotFoundException("Article not found with id " + id);
+		return true
+				;
 	}
-	
-	public void deleteArticle(int id) throws SQLException {
+
+	public boolean deleteArticle(int id) throws SQLException {
 		Boolean status = articleDao.delete(id);
 		if (status)
 			System.out.println("Article deleted Sucessfully!!");
 		else
 			System.out.println("Article failed to delete!!");
+		return true;
 		
 	}
 

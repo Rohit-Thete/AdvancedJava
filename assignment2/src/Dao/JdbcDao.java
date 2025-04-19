@@ -12,7 +12,7 @@ public interface JdbcDao<T,K>{
 	
 	T findById(K key)throws SQLException;
 
-	void update(T t)throws SQLException;
+	Boolean update(T t)throws SQLException;
 	
 	public Boolean delete(K key) throws SQLException;
 

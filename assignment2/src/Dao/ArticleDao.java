@@ -88,7 +88,7 @@ public class ArticleDao implements JdbcDao<Article, Integer> {
 	}
 	
 	@Override
-	public void update(Article article) throws SQLException{
+	public Boolean update(Article article) throws SQLException{
 		query = "update article set name = ?, category = ?,date_created  = ?,creator_name = ? where  id  = ?";
 		pstm = con.prepareStatement(query);
 		pstm.setString(1, article.getName());
@@ -102,6 +102,7 @@ public class ArticleDao implements JdbcDao<Article, Integer> {
 			System.out.println(count + " rows affected!");
 			
 		}
+		return true;
 	}
 		
 		@Override
